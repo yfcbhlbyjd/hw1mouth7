@@ -6,20 +6,20 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.geektech.hw1mouth7.data.local.room.model.NoteEntity
+import com.geektech.hw1mouth7.data.model.NoteEntity
 
 @Dao
 interface NoteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun createNote(noteEntity: NoteEntity)
+    suspend fun createNote(noteEntity: NoteEntity)
 
     @Query("SELECT * FROM notes")
-    fun getAllNotes(): List<NoteEntity>
+    suspend fun getAllNotes(): List<NoteEntity>
 
     @Update
-    fun editNote(noteEntity: NoteEntity)
+    suspend fun editNote(noteEntity: NoteEntity)
 
     @Delete
-    fun deleteNote(noteEntity: NoteEntity)
+    suspend fun deleteNote(noteEntity: NoteEntity)
 }

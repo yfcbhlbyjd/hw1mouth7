@@ -1,15 +1,17 @@
 package com.geektech.hw1mouth7.domain.repisitory
 
 import com.geektech.hw1mouth7.domain.model.Note
+import com.geektech.hw1mouth7.utils.Resource
+import kotlinx.coroutines.flow.Flow
 
 interface NoteRepository {
 
-    fun addNote(note: Note)
+    fun addNote(note: Note): Flow<Resource<Unit>>
 
-    fun getAllNotes(): List<Note>
+    fun getAllNotes(): Flow<Resource<List<Note>>>
 
-    fun editNote(note: Note)
+    fun editNote(note: Note): Flow<Resource<Unit>>
 
-    fun deleteNote(note: Note)
+    fun deleteNote(note: Note): Flow<Resource<Unit>>
 
 }

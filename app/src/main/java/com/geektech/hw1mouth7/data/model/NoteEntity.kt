@@ -1,4 +1,4 @@
-package com.geektech.hw1mouth7.data.local.room.model
+package com.geektech.hw1mouth7.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

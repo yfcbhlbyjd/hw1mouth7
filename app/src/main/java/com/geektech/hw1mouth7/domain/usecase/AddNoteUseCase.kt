@@ -2,7 +2,9 @@ package com.geektech.hw1mouth7.domain.usecase
 
 import com.geektech.hw1mouth7.domain.model.Note
 import com.geektech.hw1mouth7.domain.repisitory.NoteRepository
+import javax.inject.Inject
 
-class AddNoteUseCase (private val noteRepository: NoteRepository) {
+class AddNoteUseCase @Inject constructor(
+    private val noteRepository: NoteRepository) {
     fun addNote(note: Note) = noteRepository.addNote(note)
 }
