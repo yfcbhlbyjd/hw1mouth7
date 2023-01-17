@@ -1,5 +1,6 @@
 package com.geektech.hw1mouth7.presentation.ui.notes
 
+import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.geektech.hw1mouth7.R
 import com.geektech.hw1mouth7.databinding.FragmentNoteListBinding
+import com.geektech.hw1mouth7.domain.model.Note
 import com.geektech.hw1mouth7.presentation.base.BaseFragment
 import com.geektech.hw1mouth7.presentation.extension.showToast
 import com.geektech.hw1mouth7.presentation.ui.notes.adapter.NoteAdapter
@@ -17,7 +19,7 @@ class NoteListFragment: BaseFragment<FragmentNoteListBinding, NoteListViewModel>
 
     override val binding by viewBinding(FragmentNoteListBinding::bind)
     override val viewModel by viewModels<NoteListViewModel>()
-    private val noteAdapter by lazy { NoteAdapter() }
+    private val noteAdapter by lazy { NoteAdapter(this::onItemClick) }
 
     override fun initialize() {
         with(binding.rvNotes) {
@@ -59,13 +61,22 @@ class NoteListFragment: BaseFragment<FragmentNoteListBinding, NoteListViewModel>
             onSuccess = {
                 showToast(R.string.status_deleted)
             }
-
         )
+    }
+
+    private fun onItemClick(note: Note) {
+        val bundle = Bundle()
+        bundle.putSerializable(EDIT_NOTE_KEY, note)
+        findNavController().navigate(R.id.action_noteListFragment_to_addNoteFragment))
     }
     override fun setupListeners() {
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_noteListFragment_to_addNoteFragment)
         }
+    }
+
+    companion object {
+        const val EDIT_NOTE_KEY = "value"
     }
 
 }

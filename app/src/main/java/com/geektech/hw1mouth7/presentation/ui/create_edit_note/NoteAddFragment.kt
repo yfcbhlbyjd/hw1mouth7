@@ -17,6 +17,7 @@ import com.geektech.hw1mouth7.databinding.FragmentNoteAddBinding
 import com.geektech.hw1mouth7.domain.model.Note
 import com.geektech.hw1mouth7.presentation.base.BaseFragment
 import com.geektech.hw1mouth7.presentation.extension.showToast
+import com.geektech.hw1mouth7.presentation.ui.notes.NoteListFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -26,16 +27,35 @@ class NoteAddFragment :
 
     override val binding by viewBinding(FragmentNoteAddBinding::bind)
     override val viewModel by viewModels<NoteAddViewModel>()
+    private var note: Note? = null
+
+    override fun initialize() {
+        note = arguments?.getSerializable(NoteListFragment.EDIT_NOTE_KEY) as Note
+        if (note != null) {
+            binding.etTitle.setText(note!!.title)
+            binding.etDescription.setText(note!!.description)
+        }
+    }
 
     override fun setupListeners() {
         binding.btnSave.setOnClickListener {
-            viewModel.createNote(
-                Note(
-                    title = binding.etTitle.text.toString(),
-                    description = binding.etDescription.text.toString(),
-                    createAt = System.currentTimeMillis()
+            if (note == null) {
+                viewModel.createNote(
+                    Note(
+                        title = binding.etTitle.text.toString(),
+                        description = binding.etDescription.text.toString(),
+                        createAt = System.currentTimeMillis()
+                    )
                 )
-            )
+            } else {
+                viewModel.editNote(
+                    Note(
+                        title = binding.etTitle.toString(),
+                        description = binding.etDescription.toString(),
+                        createAt = System.currentTimeMillis()
+                    )
+                )
+            }
         }
     }
 
@@ -48,34 +68,20 @@ class NoteAddFragment :
                 showToast(it)
             },
             onSuccess = {
-
                 findNavController().navigateUp()
-
             }
-                )
-        viewModel.editNote(
-            Note(
-                title = binding.etTitle.toString(),
-                description = binding.etDescription.toString(),
-                createAt = System.currentTimeMillis()
-            )
         )
-        lifecycleScope.launch{
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.editNoteState.collectState(
-                    onLoading = {
-                        //Progress Bar
-                    },
-                    onError = {
-                        showToast(it)
-                    },
-                    onSuccess = {
-                        Toast.makeText(requireContext(), "Successfully edited!", Toast.LENGTH_SHORT).show()
-                        findNavController().navigateUp()
-                    }
-                )
-            }
+        viewModel.editNoteState.collectState(
+            onLoading = {
+                //Progress Bar
+            },
+            onError = {
+                showToast(it)
+            },
+            onSuccess = {
+                findNavController().navigateUp()
+                }
+            )
         }
     }
 
-}

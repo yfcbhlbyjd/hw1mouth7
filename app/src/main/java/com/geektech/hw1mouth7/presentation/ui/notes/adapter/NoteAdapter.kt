@@ -7,7 +7,7 @@ import com.geektech.hw1mouth7.data.model.NoteEntity
 import com.geektech.hw1mouth7.databinding.ItemNotesBinding
 import com.geektech.hw1mouth7.domain.model.Note
 
-class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter (private val onClick: (Note)) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private var list = listOf<Note>()
 
@@ -16,14 +16,6 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class NoteViewHolder(private var binding: ItemNotesBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(note: NoteEntity) {
-            binding.itemTitle.text=note.title
-            binding.itemDescription.text=note.description
-            binding.itemCreatedAt
-        }
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder(
@@ -39,5 +31,17 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         holder.bind(list[position])
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount() = list.size
+
+
+    inner class NoteViewHolder(private var binding: ItemNotesBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind(note: NoteEntity) {
+            binding.itemTitle.text=note.title
+            binding.itemDescription.text=note.description
+            binding.itemCreatedAt
+            itemView.setOnClickListener {
+                onClick.invoke(note)
+            }
+        }
+    }
 }
