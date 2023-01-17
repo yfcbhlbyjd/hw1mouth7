@@ -4,20 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/_16_size">
+    android:padding="@dimen/_4_size">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_notes"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:context= ".presentation.ui.notes.NoteListFragment"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="@dimen/_40_size"
-        android:layout_height="@dimen/_40_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_edit_24"
         android:layout_gravity="bottom|end"
+        android:backgroundTint="#FBE30A"
         android:layout_marginBottom="@dimen/_16_size"
-        android:layout_marginEnd="@dimen/_16_size" />
+        android:layout_marginEnd="@dimen/_16_size"/>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:trackColor="@color/white"
+        app:indicatorColor="@color/dark_white"
+        android:layout_gravity="center"/>
+
 </FrameLayout>

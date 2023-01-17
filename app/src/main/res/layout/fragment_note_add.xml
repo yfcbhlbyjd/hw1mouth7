@@ -2,7 +2,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:context= ".presentation.ui.notes.NoteAddFragment">
+
 
     <EditText
         android:id="@+id/et_title"
@@ -16,10 +18,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/et_desc"/>
+        app:layout_constraintBottom_toTopOf="@id/et_description"/>
 
     <EditText
-        android:id="@+id/et_desc"
+        android:id="@+id/et_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter"
@@ -31,5 +33,16 @@
         app:layout_constraintTop_toBottomOf="@id/et_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/et_description"
+        android:layout_marginHorizontal="@dimen/_16_size"
+        android:text="Save"
+        android:textSize="@dimen/_16_size"
+        android:layout_marginTop="@dimen/_16_size"
+        android:backgroundTint="@color/purple"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

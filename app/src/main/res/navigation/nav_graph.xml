@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/noteListFragment"
-        android:name="com.geektech.hw1mouth7.presentation.notes.NoteListFragment"
+        android:name="com.geektech.hw1mouth7.presentation.ui.notes.NoteListFragment"
         android:label="fragment_note_list"
         tools:layout="@layout/fragment_note_list" >
         <action
             android:id="@+id/action_noteListFragment_to_addNoteFragment"
-            app:destination="@id/addNoteFragment" />
+            app:destination="@id/noteAddFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addNoteFragment"
-        android:name="com.geektech.hw1mouth7.presentation.notes.NoteAddFragment"
-        android:label="fragment_add_note"
+        android:id="@+id/noteAddFragment"
+        android:name="com.geektech.hw1mouth7.presentation.ui.create_edit_note.NoteAddFragment"
+        android:label="fragment_note_add"
         tools:layout="@layout/fragment_note_add" />
 </navigation>

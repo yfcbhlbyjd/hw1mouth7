@@ -4,7 +4,7 @@ import com.geektech.hw1mouth7.domain.model.Note
 import com.geektech.hw1mouth7.domain.repisitory.NoteRepository
 import javax.inject.Inject
 
-class AddNoteUseCase @Inject constructor(
+class CreateNoteUseCase @Inject constructor(
     private val noteRepository: NoteRepository) {
-    fun addNote(note: Note) = noteRepository.addNote(note)
+    operator fun invoke(note: Note) = noteRepository.createNote(note)
 }
