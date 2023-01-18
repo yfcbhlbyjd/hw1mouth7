@@ -67,7 +67,7 @@ class NoteListFragment: BaseFragment<FragmentNoteListBinding, NoteListViewModel>
     private fun onItemClick(note: Note) {
         val bundle = Bundle()
         bundle.putSerializable(EDIT_NOTE_KEY, note)
-        findNavController().navigate(R.id.action_noteListFragment_to_addNoteFragment))
+        findNavController().navigate(R.id.action_noteListFragment_to_addNoteFragment, bundle)
     }
     override fun setupListeners() {
         binding.fab.setOnClickListener {
