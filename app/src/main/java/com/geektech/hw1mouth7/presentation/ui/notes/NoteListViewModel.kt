@@ -27,7 +27,7 @@ class NoteListViewModel @Inject constructor(
         getAllNotesUseCase().collectFlow(_getAllNotesState)
     }
 
-    fun deleteNote(note: Note) {
+    fun deleteNote(note: Unit, text: Unit, text1: Unit) {
         deleteNoteUseCase(note).collectFlow(_deleteNoteState)
     }
 }

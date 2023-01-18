@@ -38,7 +38,7 @@ class NoteAdapter(private val onClick: KFunction1<Note, Unit>) : RecyclerView.Ad
         fun bind(note: Note) {
             binding.itemTitle.text=note.title
             binding.itemDescription.text=note.description
-            binding.itemCreatedAt
+            binding.itemCreatedAt.text= note.createAt.toString()
             itemView.setOnClickListener {
                 onClick.invoke(note)
             }

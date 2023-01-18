@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.geektech.hw1mouth7.R
 import com.geektech.hw1mouth7.databinding.FragmentNoteListBinding
+import com.geektech.hw1mouth7.databinding.ItemNotesBinding
 import com.geektech.hw1mouth7.domain.model.Note
 import com.geektech.hw1mouth7.presentation.base.BaseFragment
 import com.geektech.hw1mouth7.presentation.extension.showToast
@@ -18,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class NoteListFragment: BaseFragment<FragmentNoteListBinding, NoteListViewModel>(R.layout.fragment_note_list) {
 
     override val binding by viewBinding(FragmentNoteListBinding::bind)
+    private val _binding :ItemNotesBinding by viewBinding(ItemNotesBinding::bind)
     override val viewModel by viewModels<NoteListViewModel>()
     private val noteAdapter by lazy { NoteAdapter(this::onItemClick) }
 
@@ -72,6 +74,12 @@ class NoteListFragment: BaseFragment<FragmentNoteListBinding, NoteListViewModel>
     override fun setupListeners() {
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_noteListFragment_to_addNoteFragment)
+            
+        viewModel.deleteNote(
+            _binding.itemTitle.setText(""),
+            _binding.itemDescription.setText(""),
+            _binding.itemCreatedAt.setText("")
+        )
         }
     }
 
@@ -80,3 +88,4 @@ class NoteListFragment: BaseFragment<FragmentNoteListBinding, NoteListViewModel>
     }
 
 }
+
