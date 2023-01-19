@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_edit_24"
         android:layout_gravity="bottom|end"
-        android:backgroundTint="#FBE30A"
+        android:backgroundTint="#FFC107"
         android:layout_marginBottom="@dimen/_16_size"
         android:layout_marginEnd="@dimen/_16_size"/>
 
