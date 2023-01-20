@@ -7,8 +7,9 @@ import com.geektech.hw1mouth7.databinding.ItemNotesBinding
 import com.geektech.hw1mouth7.domain.model.Note
 import kotlin.reflect.KFunction1
 
-class NoteAdapter(private val onClick: KFunction1<Note, Unit>) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
+class NoteAdapter(private val onClick: KFunction1<Note, Unit>
+) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     private var list = listOf<Note>()
 
     fun submitList(list: List<Note>) {
@@ -34,7 +35,7 @@ class NoteAdapter(private val onClick: KFunction1<Note, Unit>) : RecyclerView.Ad
     override fun getItemCount() = list.size
 
 
-    inner class NoteViewHolder(private var binding: ItemNotesBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class NoteViewHolder(private val binding: ItemNotesBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(note: Note) {
             binding.itemTitle.text=note.title
             binding.itemDescription.text=note.description
@@ -45,3 +46,5 @@ class NoteAdapter(private val onClick: KFunction1<Note, Unit>) : RecyclerView.Ad
         }
     }
 }
+
+

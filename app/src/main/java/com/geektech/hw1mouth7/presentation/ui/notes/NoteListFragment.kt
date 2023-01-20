@@ -19,7 +19,7 @@ class NoteListFragment: BaseFragment<FragmentNoteListBinding, NoteListViewModel>
 
     override val binding by viewBinding(FragmentNoteListBinding::bind)
     override val viewModel by viewModels<NoteListViewModel>()
-    private val noteAdapter by lazy { NoteAdapter(this::onItemClick) }
+    private val noteAdapter by lazy { NoteAdapter(::onItemClick) }
 
     override fun initialize() {
         with(binding.rvNotes) {
