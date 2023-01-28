@@ -1,4 +1,4 @@
-package com.geektech.hw1mouth7.utils
+package com.geektech.hw1mouth7.domain.utils
 
 sealed class Resource<T>(
     val data: T? = null,

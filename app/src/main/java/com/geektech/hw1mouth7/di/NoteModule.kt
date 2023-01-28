@@ -29,12 +29,13 @@ class NoteModule {
 
     @Singleton
     @Provides
-    fun provideNoteDao(noteDatabase: NoteDatabase) = noteDatabase.noteDao()
+    fun provideNoteDao(noteDatabase: com.geektech.hw1mouth7.data.local.room.NoteDatabase) = noteDatabase.noteDao()
 
     @Singleton
     @Provides
     fun provideNoteRepository(
         noteDao: NoteDao
-    ): NoteRepository = NoteRepositoryImpl(noteDao)
+    ): NoteRepository =
+        NoteRepositoryImpl(noteDao)
 
 }

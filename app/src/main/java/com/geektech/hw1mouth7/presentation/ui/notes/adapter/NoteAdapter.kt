@@ -8,11 +8,11 @@ import com.geektech.hw1mouth7.domain.model.Note
 import kotlin.reflect.KFunction1
 
 
-class NoteAdapter(private val onClick: KFunction1<Note, Unit>
+class NoteAdapter(private val onClick: KFunction1<com.geektech.hw1mouth7.domain.model.Note, Unit>
 ) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
-    private var list = listOf<Note>()
+    private var list = listOf<com.geektech.hw1mouth7.domain.model.Note>()
 
-    fun submitList(list: List<Note>) {
+    fun submitList(list: List<com.geektech.hw1mouth7.domain.model.Note>) {
         this.list = list
         notifyDataSetChanged()
     }
@@ -36,7 +36,7 @@ class NoteAdapter(private val onClick: KFunction1<Note, Unit>
 
 
     inner class NoteViewHolder(private val binding: ItemNotesBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(note: Note) {
+        fun bind(note: com.geektech.hw1mouth7.domain.model.Note) {
             binding.itemTitle.text=note.title
             binding.itemDescription.text=note.description
             binding.itemCreatedAt.text= note.createAt.toString()

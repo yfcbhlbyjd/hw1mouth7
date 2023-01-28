@@ -9,13 +9,13 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.geektech.hw1mouth7.R
 import com.geektech.hw1mouth7.databinding.FragmentNoteListBinding
 import com.geektech.hw1mouth7.domain.model.Note
-import com.geektech.hw1mouth7.presentation.base.BaseFragment
+import com.geektech.hw1mouth7.data.base.BaseFragment
 import com.geektech.hw1mouth7.presentation.extension.showToast
 import com.geektech.hw1mouth7.presentation.ui.notes.adapter.NoteAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NoteListFragment: BaseFragment<FragmentNoteListBinding, NoteListViewModel>(R.layout.fragment_note_list) {
+class NoteListFragment: com.geektech.hw1mouth7.data.base.BaseFragment<FragmentNoteListBinding, NoteListViewModel>(R.layout.fragment_note_list) {
 
     override val binding by viewBinding(FragmentNoteListBinding::bind)
     override val viewModel by viewModels<NoteListViewModel>()
@@ -64,7 +64,7 @@ class NoteListFragment: BaseFragment<FragmentNoteListBinding, NoteListViewModel>
         )
     }
 
-    private fun onItemClick(note: Note) {
+    private fun onItemClick(note: com.geektech.hw1mouth7.domain.model.Note) {
         val bundle = Bundle()
         bundle.putSerializable(EDIT_NOTE_KEY, note)
         findNavController().navigate(R.id.action_noteListFragment_to_addNoteFragment, bundle)

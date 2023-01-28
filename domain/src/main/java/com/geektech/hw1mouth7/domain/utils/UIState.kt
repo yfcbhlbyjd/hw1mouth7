@@ -1,4 +1,4 @@
-package com.geektech.hw1mouth7.utils
+package com.geektech.hw1mouth7.domain.utils
 
 sealed class UIState<T> {
     class Loading<T>: UIState<T>()

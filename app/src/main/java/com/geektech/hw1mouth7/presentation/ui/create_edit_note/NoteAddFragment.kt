@@ -5,22 +5,21 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.geektech.hw1mouth7.R
 import com.geektech.hw1mouth7.databinding.FragmentNoteAddBinding
-import com.geektech.hw1mouth7.domain.model.Note
-import com.geektech.hw1mouth7.presentation.base.BaseFragment
+import com.geektech.hw1mouth7.data.base.BaseFragment
 import com.geektech.hw1mouth7.presentation.extension.showToast
 import com.geektech.hw1mouth7.presentation.ui.notes.NoteListFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NoteAddFragment :
-    BaseFragment<FragmentNoteAddBinding, NoteAddViewModel>(R.layout.fragment_note_add) {
+    com.geektech.hw1mouth7.data.base.BaseFragment<FragmentNoteAddBinding, NoteAddViewModel>(R.layout.fragment_note_add) {
 
     override val binding by viewBinding(FragmentNoteAddBinding::bind)
     override val viewModel by viewModels<NoteAddViewModel>()
     private var note: Note? = null
 
     override fun initialize() {
-        note = arguments?.getSerializable(NoteListFragment.EDIT_NOTE_KEY) as Note
+        note = arguments?.getSerializable(NoteListFragment.EDIT_NOTE_KEY) as Note?
         if (note != null) {
             binding.etTitle.setText(note!!.title)
             binding.etDescription.setText(note!!.description)

@@ -1,4 +1,4 @@
-package com.geektech.hw1mouth7.presentation.base
+package com.geektech.hw1mouth7.data.base
 
 import android.os.Bundle
 import android.view.View
@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
-import com.geektech.hw1mouth7.utils.UIState
+import com.geektech.hw1mouth7.domain.utils.UIState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
@@ -37,7 +37,7 @@ abstract class BaseFragment<VB: ViewBinding, VM : ViewModel>(
 
     protected open fun setupRequests() {}
 
-    protected fun <T> StateFlow<UIState<T>>.collectState(
+    protected fun <T> StateFlow<com.geektech.hw1mouth7.domain.utils.UIState<T>>.collectState(
         onLoading: () -> Unit,
         onError: (message: String) -> Unit,
         onSuccess: (data: T) -> Unit
@@ -48,10 +48,10 @@ abstract class BaseFragment<VB: ViewBinding, VM : ViewModel>(
             this@collectState.collect { state ->
                 when(state){
 
-                    is UIState.Error -> onError(state.message)
-                    is UIState.Loading -> onLoading()
-                    is UIState.Success -> onSuccess(state.data)
-                    is UIState.Empty -> {}
+                    is com.geektech.hw1mouth7.domain.utils.UIState.Error -> onError(state.message)
+                    is com.geektech.hw1mouth7.domain.utils.UIState.Loading -> onLoading()
+                    is com.geektech.hw1mouth7.domain.utils.UIState.Success -> onSuccess(state.data)
+                    is com.geektech.hw1mouth7.domain.utils.UIState.Empty -> {}
                 }
             }
         }
